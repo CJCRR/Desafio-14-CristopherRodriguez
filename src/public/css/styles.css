@@ -2,6 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
+}
+
+.box-inicio .row .box-inicio-1 .box-inicio-1-1 h1 {
+  width: 500px;
+}
+.box-inicio .row .box-inicio-1 .box-inicio-1-2 p {
+  font-size: 20px;
+}
+.box-inicio .row .box-inicio-2 .carousel {
+  width: 600px;
+  height: 600px;
 }
 
 .paginate {

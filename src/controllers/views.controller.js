@@ -4,27 +4,37 @@ import { ProductService } from '../services/index.js';
 import User from '../dao/models/user.model.js';
 import logger from '../logger.js'
 
+
+export const readViewsHome = async (req,res) => {
+  try {
+    res.render("inicio")
+  } catch (error) {
+    logger.error('Error al leer los productos en tiempo real:', error);
+      res.status(500).json({ error: 'Error al leer los productos en tiempo real' });
+  }
+}
+
 export const readViewsProductsController = async (req, res) => {
     try {
       //const products = await ProductModel.find().lean().exec();
     let pageNum = parseInt(req.query.page) || 1;
-    let itemsPorPage = parseInt(req.query.limit) || 10;
+    let itemsPorPage = parseInt(req.query.limit) || 9;
     const products = await productModel.paginate({}, { page: pageNum , limit: itemsPorPage , lean:true });
 
-    products.prevLink = products.hasPrevPage ? `/home?limit=${itemsPorPage}&page=${products.prevPage}` : '';
-    products.nextLink = products.hasNextPage ? `/home?limit=${itemsPorPage}&page=${products.nextPage}` : '';
+    products.prevLink = products.hasPrevPage ? `/products?limit=${itemsPorPage}&page=${products.prevPage}` : '';
+    products.nextLink = products.hasNextPage ? `/products?limit=${itemsPorPage}&page=${products.nextPage}` : '';
 
       // Obtener los datos del usuario desde la sesión
-    const userInfo = {
-        first_name: req.session.user.first_name,
-        last_name: req.session.user.last_name,
-        email: req.session.user.email,
-        age: req.session.user.age,
-        role: req.session.user.role,
-    };
+    //const userInfo = {
+      //  first_name: req.session.user.first_name,
+        //last_name: req.session.user.last_name,
+        //email: req.session.user.email,
+        //age: req.session.user.age,
+        //role: req.session.user.role,
+    //};
 
       // Renderizar la vista de productos y pasar los datos del usuario
-    res.render('home', { ...products, userInfo });
+    res.render('home', { ...products});
     } catch (error) {
       logger.error('Error al leer los productos:', error);
         res.status(500).json({ error: 'Error al leer los productos' });

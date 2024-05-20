@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import { isAuthenticated, isAdminOrPremium, hasAdminCredentials } from "../public/js/authMiddleware.js";
 import { 
+  readViewsHome,
   readViewsProductsController, 
   readViewsRealTimeProductsController, 
   readViewsProductController,
@@ -11,8 +12,11 @@ import {
 
 const router = Router();
 
+//Devuelve el inicio del sitio
+router.get('/', readViewsHome);
+
 // Devuelve todos los product
-router.get('/home', isAuthenticated, readViewsProductsController);
+router.get('/products', readViewsProductsController);
 
 // Devuelve todos los productos en tiempo real
 router.get('/realtimeproducts', isAuthenticated, isAdminOrPremium, readViewsRealTimeProductsController);
