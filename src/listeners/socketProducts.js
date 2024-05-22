@@ -21,6 +21,18 @@ const socketProducts = (socketServer) => {
             socketServer.emit("enviodeproducts", listadeproductos)
         })
 
+        socket.on('updateProduct', async (updatedProduct) => {
+            const { productId, title, description, price, thumbnail, code, stock } = updatedProduct;
+            try {
+                await pm.update(productId, { title, description, price, thumbnail, code, stock });
+                const listadeproductos = await pm.getAll();
+                socketServer.emit('enviodeproducts', listadeproductos);
+            } catch (error) {
+                console.error('Error al actualizar el producto:', error);
+            }
+        });
+        
+
         socket.on("nuevousuario", (usuario) => {
             logger.info("usuario", usuario)
             socket.broadcast.emit("broadcast", usuario)
@@ -28,7 +40,6 @@ const socketProducts = (socketServer) => {
         socket.on("disconnect", () => {
             logger.info(`Usuario esta desconectado `)
         })
-
     })
 };
 

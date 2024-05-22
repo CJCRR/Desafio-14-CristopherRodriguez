@@ -36,6 +36,33 @@
       </div>
     </div>
   </div>
+  <div class="col box-form-update">
+  <h2>Actualizar producto</h2>
+  <form action="/api/products/{{product._id}}?_method=PUT" method="POST" id="updateProductForm">
+    <label for="updateProductId">ID del producto:</label>
+    <input type="text" id="updateProductId" name="updateProductId" required>
+
+    <label for="updateTitle">Título:</label>
+    <input type="text" id="updateTitle" name="updateTitle">
+
+    <label for="updateDescription">Descripción:</label>
+    <input type="text" id="updateDescription" name="updateDescription">
+
+    <label for="updatePrice">Precio:</label>
+    <input type="number" id="updatePrice" name="updatePrice">
+
+    <label for="updateThumbnail">Imagen:</label>
+    <input type="text" id="updateThumbnail" name="updateThumbnail">
+
+    <label for="updateCode">Código:</label>
+    <input type="text" id="updateCode" name="updateCode">
+
+    <label for="updateStock">Stock:</label>
+    <input type="number" id="updateStock" name="updateStock">
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+</div>
 </div>
 
 <div class="container box-products-realTime">

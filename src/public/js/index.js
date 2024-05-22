@@ -27,7 +27,6 @@ function updateProductList(listProducts) {
           </div>
           <div class="row">
             <a href="/realtimeproducts/${product._id}" class="btn btn-outline-primary col">Ver más</a>
-            <button class="btn btn-outline-primary col">Agregar</button>
           </div>
         </div>
       </div>
@@ -77,3 +76,23 @@ document.getElementById("delete-btn").addEventListener("click", (e) => {
   });
 });
 
+const updateProductForm = document.getElementById('updateProductForm');
+
+updateProductForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const productId = document.getElementById('updateProductId').value;
+  const title = document.getElementById('updateTitle').value;
+  const description = document.getElementById('updateDescription').value;
+  const price = document.getElementById('updatePrice').value;
+  const thumbnail = document.getElementById('updateThumbnail').value;
+  const code = document.getElementById('updateCode').value;
+  const stock = document.getElementById('updateStock').value;
+
+  const updatedProduct = { productId, title, description, price, thumbnail, code, stock };
+
+  socketClient.emit('updateProduct', updatedProduct);
+
+  // Restablecer el formulario después de enviar los datos
+  updateProductForm.reset();
+});
