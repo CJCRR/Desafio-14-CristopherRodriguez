@@ -10,10 +10,6 @@ body {
   flex-direction: column;
 }
 
-.box-inicio {
-  min-height: 100vh;
-  background-color: rgb(227, 227, 227);
-}
 .box-inicio .row .box-inicio-1 {
   display: flex;
   flex-direction: column;
@@ -41,6 +37,63 @@ body {
 .box-inicio .marcas div a img {
   width: 98px;
   margin: 15px;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio {
+  width: 190px;
+  height: 254px;
+  padding: 0.8em;
+  background: #f5f5f5;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-img {
+  background-color: #ffcaa6;
+  height: 40%;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition: 0.3s ease;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-img:hover {
+  transform: translateY(-25%);
+  box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-info {
+  padding-top: 10%;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-info .text-title {
+  font-weight: 900;
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-footer .card-button {
+  border: 1px solid #252525;
+  display: flex;
+  padding: 0.3em;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: 0.3s ease-in-out;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-footer .card-button svg {
+  width: 20px;
+  height: 20px;
+}
+.box-inicio .box-destacados .box-destacados-1 .featured-products .product-card-inicio .card-footer .card-button:hover {
+  border: 1px solid #ffcaa6;
+  background-color: #ffcaa6;
+}
+
+.splide__slide {
+  padding: 1rem;
+  text-align: center;
 }
 
 .paginate {

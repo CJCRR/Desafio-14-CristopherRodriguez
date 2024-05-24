@@ -22,7 +22,7 @@ router.get('/products', readViewsProductsController);
 router.get('/realtimeproducts', isAuthenticated, isAdminOrPremium, readViewsRealTimeProductsController);
 
 // Devuelve un producto según su id
-router.get('/realtimeproducts/:cid', isAuthenticated, readViewsProductController);
+router.get('/products/:cid', isAuthenticated, readViewsProductController);
 
 // Devuelve un carrito según su id
 router.get('/carts', isAuthenticated, readViewsCartController);

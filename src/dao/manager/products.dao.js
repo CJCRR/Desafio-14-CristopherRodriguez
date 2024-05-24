@@ -43,4 +43,9 @@ export default class ProductDAO {
     create = async(data) => await productsModel.create(data)
     update = async(id, data) => await productsModel.findByIdAndUpdate(id, data, { new: true })
     delete = async(id) => await productsModel.findByIdAndDelete(id)
+    getFeaturedProducts = async (limit) => {
+        // Obtener productos aleatorios
+        const featuredProducts = await productsModel.aggregate([{ $sample: { size: limit } }]);
+        return featuredProducts;
+    }
 }

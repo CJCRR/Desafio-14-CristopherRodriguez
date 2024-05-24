@@ -7,10 +7,11 @@ import logger from '../logger.js'
 
 export const readViewsHome = async (req,res) => {
   try {
-    res.render("inicio")
+    const featuredProducts = await ProductService.getFeaturedProducts(10);
+    res.render("inicio", { featuredProducts });
   } catch (error) {
     logger.error('Error al leer los productos en tiempo real:', error);
-      res.status(500).json({ error: 'Error al leer los productos en tiempo real' });
+    res.status(500).json({ error: 'Error al leer los productos en tiempo real' });
   }
 }
 
@@ -42,26 +43,33 @@ export const readViewsProductsController = async (req, res) => {
 }
 
 export const readViewsRealTimeProductsController = async (req, res) => {
-    try {
-      res.render("realtimeproducts")
-    } catch (error) {
-      logger.error('Error al leer los productos en tiempo real:', error);
-        res.status(500).json({ error: 'Error al leer los productos en tiempo real' });
-    }
+  try {
+    //const products = await ProductModel.find().lean().exec();
+    const products = await ProductService.getAll()
+    const userInfo = {
+      email: req.session.user.email,
+      role: req.session.user.role,
+    };
+    res.render('realTimeProducts', { products, userInfo });
+  } catch (error) {
+    logger.error('Error al leer los productos en tiempo real:', error);
+    res.status(500).json({ error: 'Error al leer los productos en tiempo real' });
+  }
 }
 
 export const readViewsProductController = async (req, res) => {
   try {
-    const id = req.params.cid
-    const result = await ProductService.getById(id)
+    const id = req.params.cid;
+    const result = await ProductService.getById(id);
     const cartInfo = {
       cart: req.session.user.cart,
     };
 
+
     if (result === null) {
       return res.status(404).json({ status: 'error', error: 'Product not found' });
     }
-    res.render('product', { product: result, cartID: cartInfo.cart });
+    res.render('product', { product: result, cartID: cartInfo });
   } catch (error) {
     res.status(500).json({ error: 'Error al leer los productos' });
   }
@@ -89,6 +97,7 @@ export const readViewsCartController = async (req, res) => {
     res.status(500).json({ status: 'error', error: error.message });
   }
 }
+
 export const readViewsChats = async (req, res) => {
   res.render("chat")
 }
